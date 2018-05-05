@@ -19,3 +19,5 @@
         $ php artisan db:seed
         $ php -S localhost:8000 -t public
     ```
+    
+    The API is now running on the addres http://localhost:8000 of your local server
