@@ -25,6 +25,7 @@ class SuperheroUnitTest extends TestCase
         $hero->name = 'Clark Kent';
 
         $hero->save();
+        var_dump($hero);
 
         $this->assertNotNull($hero->id);
     }
