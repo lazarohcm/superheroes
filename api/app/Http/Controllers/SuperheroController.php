@@ -37,7 +37,10 @@ class SuperheroController extends Controller
             $hero->save();
             $images = $request->input('images');
             //Each hero will have an folder to store their images
-            mkdir(storage_path('app/' . $hero->id, 0755, true));
+
+            if (!file_exists(storage_path('app/' . $hero->id))) {
+                mkdir(storage_path('app/' . $hero->id), 0755, true);
+            }
             foreach ($images as $image) {
                 $this->storeImage($image, $hero->id);
             }
@@ -73,7 +76,7 @@ class SuperheroController extends Controller
         $imageModel = new Image();
         $imageModel->name = $image['filename'];
         $imageModel->type = $image['filetype'];
-        $imageModel->superheroes_id = $hero_id;
+        $imageModel->superhero_id = $hero_id;
         $imageModel->save();
         fclose($file);
         return true;

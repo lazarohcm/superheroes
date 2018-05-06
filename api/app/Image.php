@@ -10,4 +10,12 @@ class Image extends Model
     protected $fillable = [
         'id', 'superheroes_id', 'name', 'type',
     ];
+
+    /**
+     * Get the author that wrote the book.
+     */
+    public function superhero()
+    {
+        return $this->belongsTo('App\Superhero');
+    }
 }

@@ -17,8 +17,8 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('type');
-            $table->integer('superheroes_id')->unsigned();
-            $table->foreign('superheroes_id')->references('id')->on('superheroes')->onDelete('cascade');
+            $table->integer('superhero_id')->unsigned();
+            $table->foreign('superhero_id')->references('id')->on('superheroes')->onDelete('cascade');
             $table->timestamps();
         });
     }

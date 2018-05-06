@@ -12,5 +12,21 @@ class Superhero extends Model
         'id', 'nickname', 'name', 'origin', 'powers', 'phrase',
     ];
 
+    /**
+     * Get all of the posts for the user.
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function getAll(){
+        $heroes = DB::table('superheroes')
+            ->leftJoin('images', 'superheroes.id', '=', 'images.superheroes_id')
+            ->orderBy('superheroes.name')
+            ->take(5)
+            ->get();
+    }
+
 
 }
