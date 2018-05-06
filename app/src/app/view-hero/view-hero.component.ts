@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-hero.component.scss']
 })
 export class ViewHeroComponent implements OnInit {
-  hero: Superhero;
+  hero: Superhero = {nickname: null};
   hero_id: number;
   constructor(private heroService: SuperheroService, private activeModal: NgbActiveModal) { }
 

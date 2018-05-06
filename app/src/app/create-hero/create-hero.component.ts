@@ -22,7 +22,7 @@ export class CreateHeroComponent implements OnInit {
     private heroService: SuperheroService) { }
 
   ngOnInit() {
-
+    console.log(this.images.length);
   }
 
   createHero() {
@@ -48,6 +48,13 @@ export class CreateHeroComponent implements OnInit {
         };
       }
     }
+  }
+
+  removeImage(image) {
+    console.log(this.images);
+
+    this.images = this.images.filter(obj => obj !== image);
+    console.log(this.images);
   }
 
 }
