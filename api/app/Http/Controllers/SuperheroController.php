@@ -18,11 +18,11 @@ class SuperheroController extends Controller
     }
 
     public function store(Request $request) {
-        $this->validate($request, [
+        $error = $this->validate($request, [
             'name' => 'max:255',
             'nickname' => 'required|max:255'
         ]);
 
-        return response()->json(null);
+        return response()->json($error);
     }
 }
