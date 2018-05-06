@@ -26,7 +26,7 @@ class SuperheroUnitTest extends TestCase
     }
 
     public function testCreateSuperherowithImage() {
-        $this->post('api/superhero',
+        $call = $this->post('api/superhero',
             ['nickname' => 'Hero test',
                 'images' => [
                     $this->getHeroImage('hero.jpg'),
@@ -34,7 +34,8 @@ class SuperheroUnitTest extends TestCase
                 ]
             ]);
 
-        $hero =  Superhero::has('images')->get();
+        $jsonHero = json_decode($call->response->content());
+        $hero =  Superhero::find($jsonHero->id);
         $this->assertNotNull($hero->images());
 
     }
@@ -48,6 +49,11 @@ class SuperheroUnitTest extends TestCase
         $this->assertNotNull($hero->updated_at);
     }
 
+    public function testGetAllHeroes() {
+        $heroes = Superhero::with('images')->orderBy('name')->take(5)->get();
+        $this->assertNotEquals(0, count($heroes));
+    }
+
     public function testDeleteSuperhero() {
         $hero =  Superhero::orderBy('id', 'desc')->first();
         $hero->delete();
@@ -55,10 +61,7 @@ class SuperheroUnitTest extends TestCase
         $this->assertFalse($hero->exists);
     }
 
-    public function testGetAllHeroes() {
-        $heroes = Superhero::with('images')->orderBy('name')->take(5)->get();
-        $this->assertNotNull($heroes);
-    }
+
 
     //Validation is not satisfied
     public function testCreateSuperheroError() {
