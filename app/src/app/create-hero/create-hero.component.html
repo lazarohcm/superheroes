@@ -6,62 +6,56 @@
 </div>
 <div class="modal-body">
 
-  <form>
+  <form #heroForm="ngForm">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="nickname">Nickname</label>
-        <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+        <input required [(ngModel)]="hero.nickname" name="nickname" type="text" class="form-control" id="nickname" placeholder="Nickname">
+
       </div>
       <div class="form-group col-md-6">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Name">
+        <input [(ngModel)]="hero.name" name="name" type="text" class="form-control" id="name" placeholder="Name">
       </div>
     </div>
     <div class="form-group">
       <label for="origin">Origin</label>
-      <textarea type="text" class="form-control" id="origin" placeholder="Hero Origin"></textarea>
+      <textarea [(ngModel)]="hero.origin" name="origin" type="text" class="form-control" id="origin" placeholder="Hero Origin"></textarea>
     </div>
     <div class="form-group">
       <label for="powers">Superpowers</label>
-      <textarea type="text" class="form-control" id="powers" placeholder="Hero list of powers"></textarea>
+      <textarea [(ngModel)]="hero.powers" name="powers" type="text" class="form-control" id="powers" placeholder="Hero list of powers"></textarea>
     </div>
 
     <div class="form-group">
-      <label for="inputAddress2">Catch Phrase</label>
-      <textarea type="text" class="form-control" id="origin" placeholder="I'm batman"></textarea>
+      <label for="phrase">Catch Phrase</label>
+      <textarea [(ngModel)]="hero.catch_phrase" name="phrase" type="text" class="form-control" id="phrase" placeholder="I'm batman"></textarea>
     </div>
 
     <div class="form-group">
       <label>Images</label>
-      <button class="btn btn-primary">Add</button>
+
+      <div class="custom-file">
+        <input value="Select images" (change)="catchImages($event)" name="images" type="file" class="custom-file-input" id="images"
+          multiple required accept=".png, .jpg, .jpeg">
+        <label class="custom-file-label" for="images">
+          <span *ngFor="let image of images">
+            {{image.name}}
+          </span>
+        </label>
+      </div>
+      <!-- <button class="btn btn-primary">Add</button> -->
     </div>
 
     <div class="row">
-      <div class="col-3">
-        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      <div class="col-3" *ngFor="let image of images">
+        <img class="img-thumbnail" [src]="image.src" height="200" width="200">
       </div>
-
-      <div class="col-3">
-        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
-      </div>
-
-      <div class="col-3">
-        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
-      </div>
-
-      <div class="col-3">
-        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
-      </div>
-
-      <div class="col-3">
-        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
-      </div>
-
     </div>
 
   </form>
 
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-primary" (click)="createHero()">Save Hero</button>
+  <button [disabled]="!heroForm.form.valid" type="submit" class="btn btn-primary" (click)="createHero()">Save Hero</button>
 </div>

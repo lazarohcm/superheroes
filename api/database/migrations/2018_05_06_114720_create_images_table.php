@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSuperheroesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateSuperheroesTable extends Migration
      */
     public function up()
     {
-        Schema::create('superheroes', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nickname')->nullable(false);
-            $table->string('name')->nullable(true);
-            $table->text('origin')->nullable(true);;
-            $table->text('powers')->nullable(true);;
-            $table->string('phrase')->nullable(true);;
+            $table->string('name');
+            $table->string('type');
+            $table->integer('superheroes_id')->unsigned();
+            $table->foreign('superheroes_id')->references('id')->on('superheroes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateSuperheroesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('superheroes');
+        Schema::dropIfExists('images');
     }
 }

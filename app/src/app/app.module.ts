@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CreateHeroComponent } from './create-hero/create-hero.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpModule } from '@angular/http';
     NgbModule.forRoot(),
     HttpClientModule,
     HttpModule,
+    FormsModule,
   ],
   providers: [SuperheroService],
   entryComponents: [CreateHeroComponent],
