@@ -8,7 +8,9 @@ A Superhero Database were you can store information about the superheroes that y
  * Mbstring PHP Extension
 
 ## Installing
-Before anything, make sure you copy the contents from the `.env.example` to a file named `.env` and then palce the informations about your database connection on this file
+Got to the folder of the project and inside the `api` folder, follow those steps: 
+
+Before anything, make sure you copy the contents from the `.env.example` to a file named `.env` and then place all information about your database connection on this file
 
 After that, you can run the following commands to start the API
 
@@ -20,6 +22,29 @@ $ php artisan db:seed
 $ php -S localhost:8000 -t public
 ```
 The API is now running on the address http://localhost:8000 of your local server
+
+## Running
+*Assuming that you already have npm installed (If not, you can check it [here](https://www.npmjs.com/get-npm))*.
+
+Now run:
+```
+npm install -g @angular/cli
+```
+
+Got to the folder of the project and inside the `app` folder, follow those steps:
+
+On your terminal, run: 
+```
+npm install
+```
+
+And finally, run:
+```
+ng serve
+```
+
+That is it, if you visit the addres `http://localhost:4200/`, you should now be seeing the application home page
+
 
 
 ## Assumptions

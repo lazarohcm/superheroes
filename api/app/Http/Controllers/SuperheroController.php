@@ -23,6 +23,21 @@ class SuperheroController extends Controller
             'nickname' => 'required|max:255'
         ]);
 
+        try{
+            $attributes = array(
+                'nickname' => $request->input('nickname'),
+                'name' => $request->input('name'),
+                'origin' => $request->input('origin'),
+                'powers' => $request->input('powers'),
+                'catch_phrase' => $request->input('catch_phrase'),
+            );
+            $hero = $this->model->create($attributes);
+            $hero->save();
+            return response()->json($hero);
+        }catch(\Exception $ex) {
+            return response()->json($error);
+        }
+
         return response()->json($error);
     }
 }

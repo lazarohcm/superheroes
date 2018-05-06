@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Superhero extends Model
 {
     protected $fillable = [
-        'id', 'nickname', 'name', 'origin', 'description', 'powers', 'phrase',
+        'id', 'nickname', 'name', 'origin', 'powers', 'phrase',
     ];
 
 
