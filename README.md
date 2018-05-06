@@ -52,4 +52,5 @@ That is it, if you visit the addres `http://localhost:4200/`, you should now be 
 as I feel more comfortable using this strategy (I really hope it is not a problem).
 
 * To create a hero, at least a nickname should be provided (Some heroes might not have a name, origin or known powers)
+* Also at least one image should be provided
     

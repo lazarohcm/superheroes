@@ -24,7 +24,8 @@ class SuperheroController extends Controller
     {
         $error = $this->validate($request, [
             'name' => 'max:255',
-            'nickname' => 'required|max:255|min:3|nullable'
+            'nickname' => 'required|max:255|min:3|nullable',
+            'images' => 'required',
         ]);
 
         try {
@@ -47,6 +48,16 @@ class SuperheroController extends Controller
             return response()->json($hero);
         } catch (\Exception $ex) {
             return response()->json($error);
+        }
+    }
+
+    public function getHeroesWithBasicInfo(Request $request, $pagination) {
+        try {
+            return Superhero::where('superheroes.id', '>', $pagination)->with(['images' => function($q) {
+                $q->take(1);
+            }])->limit(5)->get();
+        }catch(\Exception $ex) {
+            return response()->json($ex);
         }
     }
 

@@ -31,4 +31,12 @@ export class SuperheroService {
     return this.http.post(environment.origin + 'superhero', hero);
   }
 
+  getAll(lastId: number) {
+    return this.http.get(environment.origin + 'superhero/all/' + lastId);
+  }
+
+  getImageUrl(hero_id, image_id) {
+    return environment.origin + 'superhero/image/' + hero_id + '/' + image_id;
+  }
+
 }

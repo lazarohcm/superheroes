@@ -23,6 +23,9 @@ class SuperheroUnitTest extends TestCase
         $hero->save();
 
         $this->assertTrue($hero->exists);
+        $hero =  Superhero::orderBy('id', 'desc')->first();
+        $hero->delete();
+
     }
 
     public function testCreateSuperherowithImage() {
