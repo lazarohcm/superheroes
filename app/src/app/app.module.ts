@@ -1,3 +1,4 @@
+import { SuperheroService } from './superhero.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { CreateHeroComponent } from './create-hero/create-hero.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -17,8 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [SuperheroService],
   entryComponents: [CreateHeroComponent],
   bootstrap: [AppComponent]
 })
