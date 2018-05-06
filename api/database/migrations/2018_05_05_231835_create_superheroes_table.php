@@ -15,10 +15,11 @@ class CreateSuperheroesTable extends Migration
     {
         Schema::create('superheroes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nickname');
+            $table->string('name');
+            $table->string('nickname')->nullable(false);
             $table->text('origin');
             $table->text('powers');
-            $table->text('phrase');
+            $table->string('phrase');
             $table->timestamps();
         });
     }

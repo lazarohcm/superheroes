@@ -15,19 +15,30 @@ class SuperheroUnitTest extends TestCase
         parent::__construct($name, $data, $dataName);
     }
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
     public function testCreateSuperhero() {
         $hero = new Superhero();
+        $hero->nickname = 'Superman';
+
+        $hero->save();
+
+        $this->assertTrue($hero->exists);
+    }
+
+    public function testUpdateSuperhero() {
+        $hero =  Superhero::orderBy('id', 'desc')->first();
+
         $hero->name = 'Clark Kent';
 
         $hero->save();
-        var_dump($hero);
+        $this->assertNotNull($hero->updated_at);
+    }
 
-        $this->assertNotNull($hero->id);
+    public function testDeleteSuperhero() {
+        $hero =  Superhero::orderBy('id', 'desc')->first();
+        $hero->delete();
+
+        $this->assertFalse($hero->exists);
     }
 
 
@@ -37,11 +48,11 @@ class SuperheroUnitTest extends TestCase
         $this->assertTrue($value);
     }
 
-    public function testConnection() {
-        try {
-            DB::connection()->getPdo();
-        } catch (\Exception $e) {
-            die("Could not connect to the database.  Please check your configuration.");
-        }
-    }
+//    public function testConnection() {
+//        try {
+//            DB::connection()->getPdo();
+//        } catch (\Exception $e) {
+//            die("Could not connect to the database.  Please check your configuration.");
+//        }
+//    }
 }

@@ -11,4 +11,6 @@ class Superhero extends Model
     protected $fillable = [
         'id', 'nickname', 'name', 'origin', 'description', 'powers', 'phrase',
     ];
+
+
 }
