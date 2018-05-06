@@ -41,6 +41,11 @@ class SuperheroUnitTest extends TestCase
         $this->assertFalse($hero->exists);
     }
 
+    //Validation is not satisfied
+    public function testCreateSuperheroError() {
+        $this->post('api/superhero')->seeStatusCode(422);
+    }
+
 
     public function testIsWorking() {
         $value = true;
@@ -48,11 +53,4 @@ class SuperheroUnitTest extends TestCase
         $this->assertTrue($value);
     }
 
-//    public function testConnection() {
-//        try {
-//            DB::connection()->getPdo();
-//        } catch (\Exception $e) {
-//            die("Could not connect to the database.  Please check your configuration.");
-//        }
-//    }
 }
