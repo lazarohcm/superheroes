@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Superhero</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+    <form #heroForm="ngForm" > 
+      <div class="form-row" *ngIf="hero">
+        <div class="form-group col-md-6">
+          <label for="nickname">Nickname</label>
+          <input required [(ngModel)]="hero.nickname" name="nickname" type="text" class="form-control" id="nickname" placeholder="Nickname">
+  
+        </div>
+        <div class="form-group col-md-6">
+          <label for="name">Name</label>
+          <input [(ngModel)]="hero.name" name="name" type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+      </div>
+      <div class="form-group" *ngIf="hero">
+        <label for="origin">Origin</label>
+        <textarea [(ngModel)]="hero.origin" name="origin" type="text" class="form-control" id="origin" placeholder="Hero Origin"></textarea>
+      </div>
+      <div class="form-group" *ngIf="hero">
+        <label for="powers">Superpowers</label>
+        <textarea [(ngModel)]="hero.powers" name="powers" type="text" class="form-control" id="powers" placeholder="Hero list of powers"></textarea>
+      </div>
+  
+      <div class="form-group" *ngIf="hero">
+        <label for="phrase">Catch Phrase</label>
+        <textarea [(ngModel)]="hero.catch_phrase" name="phrase" type="text" class="form-control" id="phrase" placeholder="I'm batman"></textarea>
+      </div>
+  
+      <div class="form-group" *ngIf="hero">
+        <label>Images</label>
+  
+        <div class="custom-file">
+          <input value="Select images" (change)="catchImages($event)" name="images" type="file" class="custom-file-input" id="images"
+            multiple required accept=".png, .jpg, .jpeg">
+          <label class="custom-file-label" for="images">
+            <span *ngFor="let image of images">
+              {{image.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+  
+      <div class="row" *ngIf="hero">
+          <div class="col-3" *ngFor="let image of hero.images">
+              <img class="img-thumbnail" [src]="getImage(hero.id, image.id)" height="200" width="200">
+            </div>
+
+        <div class="col-3" *ngFor="let image of new_images">
+          <img class="img-thumbnail" [src]="image.src" height="200" width="200">
+        </div>
+      </div>
+  
+    </form>
+  
+  </div>
+  <div *ngIf="hero" class="modal-footer">
+    <button  [disabled]="!heroForm?.form.valid" type="submit" class="btn btn-primary" (click)="updateHero()">Update Hero</button>
+  </div>

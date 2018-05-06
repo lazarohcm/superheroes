@@ -31,6 +31,19 @@ export class SuperheroService {
     return this.http.post(environment.origin + 'superhero', hero);
   }
 
+  updateHero(hero: Superhero) {
+    return this.http.put(environment.origin + 'superhero', hero);
+  }
+
+  deleteHero(hero_id: number) {
+    return this.http.delete(environment.origin + 'superhero/' + hero_id);
+  }
+
+  viewHero(hero_id) {
+    return this.http.get(environment.origin + 'superhero/' + hero_id);
+  }
+
+
   getAll(lastId: number) {
     return this.http.get(environment.origin + 'superhero/all/' + lastId);
   }

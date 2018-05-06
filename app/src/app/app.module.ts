@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ListHeroesComponent } from './list-heroes/list-heroes.component';
+import { EditHeroComponent } from './edit-hero/edit-hero.component';
+import { DeleteHeroComponent } from './delete-hero/delete-hero.component';
 
 
 const appRoutes: Routes = [
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CreateHeroComponent,
-    ListHeroesComponent
+    ListHeroesComponent,
+    EditHeroComponent,
+    DeleteHeroComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   providers: [SuperheroService],
-  entryComponents: [CreateHeroComponent],
+  entryComponents: [CreateHeroComponent, EditHeroComponent, DeleteHeroComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

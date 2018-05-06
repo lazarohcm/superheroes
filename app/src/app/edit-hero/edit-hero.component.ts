@@ -1,0 +1,54 @@
+import { Superhero, SuperheroService, Image } from './../superhero.service';
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-edit-hero',
+  templateUrl: './edit-hero.component.html',
+  styleUrls: ['./edit-hero.component.scss']
+})
+export class EditHeroComponent implements OnInit {
+  hero_id: number;
+  hero: Superhero;
+  new_images: any[] = [];
+  @Input() heroForm;
+  constructor(private heroService: SuperheroService) {
+
+  }
+
+  ngOnInit() {
+    this.heroService.viewHero(this.hero_id).subscribe((res) => {
+      this.hero = res.json();
+    });
+  }
+
+  updateHero() {
+    this.heroService.updateHero(this.hero).subscribe((res) => {
+      // location.reload();
+    });
+  }
+
+  getImage(hero_id, image_id) {
+    if (image_id) {
+      return this.heroService.getImageUrl(hero_id, image_id);
+    } else {
+      return 'image.jpg';
+    }
+  }
+
+
+  catchImages(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      for (const file of event.target.files) {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const image: Image = { src: reader.result, filename: file.name, filetype: file.type };
+          // this.hero.images.push(image);
+          this.new_images.push(image);
+        };
+      }
+    }
+  }
+
+}

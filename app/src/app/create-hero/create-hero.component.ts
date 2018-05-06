@@ -27,6 +27,7 @@ export class CreateHeroComponent implements OnInit {
 
   createHero() {
     this.heroService.createHero(this.hero).subscribe((res) => {
+      location.reload();
     });
   }
 
@@ -36,17 +37,14 @@ export class CreateHeroComponent implements OnInit {
 
   catchImages(event: any) {
     if (event.target.files && event.target.files.length > 0) {
-      console.log(event.target.files);
       for (const file of event.target.files) {
         const reader = new FileReader();
 
-        console.log(file);
         reader.readAsDataURL(file);
         reader.onload = () => {
           const image: Image = { src: reader.result, filename: file.name, filetype: file.type };
           this.hero.images.push(image);
           this.images.push(image);
-          console.log(this.images);
         };
       }
     }
