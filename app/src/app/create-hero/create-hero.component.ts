@@ -51,10 +51,7 @@ export class CreateHeroComponent implements OnInit {
   }
 
   removeImage(image) {
-    console.log(this.images);
-
     this.images = this.images.filter(obj => obj !== image);
-    console.log(this.images);
   }
 
 }

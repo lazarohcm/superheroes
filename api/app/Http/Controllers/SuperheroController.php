@@ -54,26 +54,31 @@ class SuperheroController extends Controller
     public function update(Request $request)
     {
         $error = $this->validate($request, [
-            'name' => 'max:255',
-            'id' => 'required',
-            'nickname' => 'required|max:255|min:3|nullable',
-            'images' => 'required',
+            'hero.name' => 'max:255',
+            'hero.id' => 'required',
+            'hero.nickname' => 'required|max:255|min:3|nullable',
         ]);
 
         try {
-            $hero = Superhero::find($request->input('id'));
-            $hero->nickname = $request->input('nickname');
-            $hero->name = $request->input('name');
-            $hero->origin = $request->input('origin');
-            $hero->powers = $request->input('powers');
-            $hero->phrase = $request->input('catch_phrase');
-            $hero->id = $request->input('id');
+            $hero = Superhero::find($request->input('hero.id'));
+            $hero->nickname = $request->input('hero.nickname');
+            $hero->name = $request->input('hero.name');
+            $hero->origin = $request->input('hero.origin');
+            $hero->powers = $request->input('hero.powers');
+            $hero->phrase = $request->input('hero.catch_phrase');
             $hero->update();
-            $new_images = $request->input('new_images');
-            $delete_images = $request->input('delete_images');
-
+            $new_images = is_null($request->input('new_images')) ? array(): $request->input('new_images');
+            $delete_images = is_null($request->input('delete_images')) ? array(): $request->input('delete_images');
             foreach ($new_images as $image) {
                 $this->storeImage($image, $hero->id);
+            }
+
+
+            foreach($delete_images as $delete_image) {
+                $record = Image::find($delete_image['id']);
+                $record->delete();
+                unlink(storage_path('app/' . $hero->id . '/' . $delete_image['name']));
+
             }
             return response()->json($hero);
         } catch (\Exception $ex) {

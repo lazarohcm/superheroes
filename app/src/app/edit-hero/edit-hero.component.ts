@@ -11,6 +11,7 @@ export class EditHeroComponent implements OnInit {
   hero_id: number;
   hero: Superhero;
   new_images: any[] = [];
+  delete_images: any[] = [];
   @Input() heroForm;
   constructor(private heroService: SuperheroService, public activeModal: NgbActiveModal) {
 
@@ -23,7 +24,7 @@ export class EditHeroComponent implements OnInit {
   }
 
   updateHero() {
-    this.heroService.updateHero(this.hero).subscribe((res) => {
+    this.heroService.updateHero(this.hero, this.delete_images, this.new_images).subscribe((res) => {
       // location.reload();
     });
   }
@@ -45,11 +46,19 @@ export class EditHeroComponent implements OnInit {
         reader.readAsDataURL(file);
         reader.onload = () => {
           const image: Image = { src: reader.result, filename: file.name, filetype: file.type };
-          // this.hero.images.push(image);
           this.new_images.push(image);
         };
       }
     }
+  }
+
+  removeImage(image) {
+    this.new_images = this.new_images.filter(obj => obj !== image);
+  }
+
+  removeImageFromDatabase(image) {
+    this.delete_images.push(image);
+    this.hero.images = this.hero.images.filter(obj => obj !== image);
   }
 
 }

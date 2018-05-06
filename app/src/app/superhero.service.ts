@@ -31,8 +31,8 @@ export class SuperheroService {
     return this.http.post(environment.origin + 'superhero', hero);
   }
 
-  updateHero(hero: Superhero) {
-    return this.http.put(environment.origin + 'superhero', hero);
+  updateHero(hero: Superhero, delete_images, new_images) {
+    return this.http.put(environment.origin + 'superhero', {hero: hero, delete_images: delete_images, new_images: new_images});
   }
 
   deleteHero(hero_id: number) {

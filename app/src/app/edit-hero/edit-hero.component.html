@@ -49,10 +49,12 @@
       <div class="row" *ngIf="hero">
           <div class="col-3" *ngFor="let image of hero.images">
               <img class="img-thumbnail" [src]="getImage(hero.id, image.id)" height="200px" width="200">
+              <button (click)="removeImageFromDatabase(image)" class="btn btn-sm-danger">Remove</button>
             </div>
 
         <div class="col-3" *ngFor="let image of new_images">
           <img class="img-thumbnail" [src]="image.src" height="200px" width="200">
+          <button (click)="removeImage(image)" class="btn btn-sm-danger">Remove</button>
         </div>
       </div>
   

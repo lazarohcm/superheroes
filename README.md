@@ -53,4 +53,5 @@ as I feel more comfortable using this strategy (I really hope it is not a proble
 * To create a hero, at least a nickname should be provided (Some heroes might not have a name, origin or known powers)
 * Also at least one image should be provided
 * When viewing a superhero, I decided not to show the fields which there is no information to retrieve form the database
+* Instead of paginating items, I decidade to make a kind of infinity scrolling when showing the heroes
     
