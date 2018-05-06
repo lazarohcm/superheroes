@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create Superhero</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nickname">Nickname</label>
+        <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="origin">Origin</label>
+      <textarea type="text" class="form-control" id="origin" placeholder="Hero Origin"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="powers">Superpowers</label>
+      <textarea type="text" class="form-control" id="powers" placeholder="Hero list of powers"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="inputAddress2">Catch Phrase</label>
+      <textarea type="text" class="form-control" id="origin" placeholder="I'm batman"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Images</label>
+      <button class="btn btn-primary">Add</button>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      </div>
+
+      <div class="col-3">
+        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      </div>
+
+      <div class="col-3">
+        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      </div>
+
+      <div class="col-3">
+        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      </div>
+
+      <div class="col-3">
+        <img src="http://via.placeholder.com/200x200" alt="..." class="img-thumbnail">
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary" (click)="activeModal.close()">Save Hero</button>
+</div>
