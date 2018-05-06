@@ -1,5 +1,6 @@
 import { Superhero, SuperheroService, Image } from './../superhero.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-hero',
@@ -11,7 +12,7 @@ export class EditHeroComponent implements OnInit {
   hero: Superhero;
   new_images: any[] = [];
   @Input() heroForm;
-  constructor(private heroService: SuperheroService) {
+  constructor(private heroService: SuperheroService, public activeModal: NgbActiveModal) {
 
   }
 

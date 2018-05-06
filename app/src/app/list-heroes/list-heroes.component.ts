@@ -1,3 +1,4 @@
+import { ViewHeroComponent } from './../view-hero/view-hero.component';
 import { DeleteHeroComponent } from './../delete-hero/delete-hero.component';
 import { EditHeroComponent } from './../edit-hero/edit-hero.component';
 import { Superhero, SuperheroService } from './../superhero.service';
@@ -29,7 +30,6 @@ export class ListHeroesComponent implements OnInit {
 
   getMore() {
     this.heroService.getAll(this.heroes[this.heroes.length - 1].id).subscribe((res) => {
-      console.log(res.json());
       const new_heros: any[] = res.json();
       new_heros.forEach((hero) => {
         this.heroes.push(hero);
@@ -39,6 +39,11 @@ export class ListHeroesComponent implements OnInit {
 
   editHero(hero: Superhero) {
     const editRef = this.modalService.open(EditHeroComponent, { size: 'lg' });
+    editRef.componentInstance.hero_id = hero.id;
+  }
+
+  viewHero(hero: Superhero) {
+    const editRef = this.modalService.open(ViewHeroComponent, { size: 'lg' });
     editRef.componentInstance.hero_id = hero.id;
   }
 

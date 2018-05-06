@@ -12,16 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { ListHeroesComponent } from './list-heroes/list-heroes.component';
 import { EditHeroComponent } from './edit-hero/edit-hero.component';
 import { DeleteHeroComponent } from './delete-hero/delete-hero.component';
+import { ViewHeroComponent } from './view-hero/view-hero.component';
 
 
 const appRoutes: Routes = [
   { path: 'heroes', component: ListHeroesComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/heroes',
     pathMatch: 'full'
   },
@@ -33,7 +30,8 @@ const appRoutes: Routes = [
     CreateHeroComponent,
     ListHeroesComponent,
     EditHeroComponent,
-    DeleteHeroComponent
+    DeleteHeroComponent,
+    ViewHeroComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +42,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   providers: [SuperheroService],
-  entryComponents: [CreateHeroComponent, EditHeroComponent, DeleteHeroComponent],
+  entryComponents: [CreateHeroComponent, EditHeroComponent, DeleteHeroComponent, ViewHeroComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
