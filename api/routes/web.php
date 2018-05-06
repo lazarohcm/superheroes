@@ -17,6 +17,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('/superhero', 'SuperheroController@store');
+    $router->put('/superhero', 'SuperheroController@update');
+    $router->delete('/superhero/{hero_id}', 'SuperheroController@delete');
+    $router->get('/superhero/{hero_id}', 'SuperheroController@getSuperHero');
     $router->get('/superhero/all/{pagination}', 'SuperheroController@getHeroesWithBasicInfo');
     $router->get('/superhero/image/{hero_id}/{image_id}', 'SuperheroController@getImage');
 });

@@ -20,6 +20,11 @@ class Superhero extends Model
         return $this->hasMany('App\Image');
     }
 
+    public function image()
+    {
+        return $this->hasOne('App\Image');
+    }
+
 
     public function delete(){
         /**

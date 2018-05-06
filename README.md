@@ -18,7 +18,6 @@ After that, you can run the following commands to start the API
 $ composer install
 $ php artisan key:generate
 $ php artisan migrate
-$ php artisan db:seed
 $ php -S localhost:8000 -t public
 ```
 The API is now running on the address http://localhost:8000 of your local server
@@ -53,4 +52,5 @@ as I feel more comfortable using this strategy (I really hope it is not a proble
 
 * To create a hero, at least a nickname should be provided (Some heroes might not have a name, origin or known powers)
 * Also at least one image should be provided
+* When viewing a superhero, I decided not to show the fields which there is no information to retrieve form the database
     

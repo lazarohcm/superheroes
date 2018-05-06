@@ -16,6 +16,7 @@ class SuperheroUnitTest extends TestCase
     }
 
 
+
     public function testCreateSuperhero() {
         $hero = new Superhero();
         $hero->nickname = 'Superman';
